@@ -1,5 +1,12 @@
 #  BI-Exam-Student-Performance
+Business Intelligence – F25 at **CPHbusiness** Group 12
 
+### Contributors 
+- [Sander Marcus Christensen](https://github.com/sanderMarcusChristensen) 
+- [Marcus Hjorth Rasmussen](https://github.com/MarcusHjorth) 
+- [Mateen Jan Rafiq](https://github.com/MateenCPH)
+
+---
 ###  Brainstorm
 After exploring datasets from OpenML, Kaggle, and World Bank Data, we chose two for our project:
 
@@ -79,7 +86,7 @@ These articles help show that our ideas make sense and give us a good starting p
 
 2. To what extent do sleep patterns and social media use impact students' grades? (Kaggle dataset only)
 
-3. Can we predict a student’s likely grade using a machine learning model based on study habits and background factors?
+3. Can we predict a student’s likely grade using a machine learning model based only on weekly study time? ?
 
 4. Do the key academic patterns found in the simulated dataset align with those in the real-world dataset?
 
