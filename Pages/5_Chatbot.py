@@ -16,12 +16,11 @@ from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_core.prompts import ChatPromptTemplate
 
 
-
 # --- STREAMLIT SETUP ---
 st.set_page_config(page_title="BI Chatbot", page_icon="")
-st.title(" BI Chatbot – fra filer og web")
+st.title("BI Chatbot – Files and Web")
 
-# --- MODEL + VECTOR STORE INITIALISERING ---
+# --- MODEL + VECTOR STORE INITIALIZATION ---
 @st.cache_resource
 def init_all():
     embeddings = OllamaEmbeddings(model="llama3.2:3b")
@@ -41,7 +40,7 @@ combined_df = pd.concat([
     sim_df[["StudyTimeWeekly", "GPA"]]
 ], ignore_index=True)
 
-# --- PDF & TEXT FIL-HÅNDTERING ---
+# --- PDF & TEXT FILE HANDLING ---
 def extract_text_from_pdf(file_path):
     doc = fitz.open(file_path)
     texts = []
@@ -60,26 +59,25 @@ def extract_text_from_txt(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         return [f.read()]
 
-# --- INDLÆS FLERE STANDARD CHATFILER ---
+# --- LOAD DEFAULT CHAT FILES ---
 chat_dir = os.path.join(os.path.dirname(__file__), "..", "Chatbot", "Chat")
-filnavne = ["4_Prediction.txt", "GitReadme.txt"]
+filenames = ["4_Prediction.txt", "GitReadme.txt"]
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
 
-for fil in filnavne:
-    sti = os.path.join(chat_dir, fil)
-    if os.path.exists(sti):
-        tekst = extract_text_from_txt(sti)
-        chunks = splitter.create_documents(tekst)
+for file in filenames:
+    path = os.path.join(chat_dir, file)
+    if os.path.exists(path):
+        text = extract_text_from_txt(path)
+        chunks = splitter.create_documents(text)
         vector_store.add_documents(chunks)
     else:
-        st.sidebar.warning(f"⚠️ Filen {fil} blev ikke fundet.")
+        st.sidebar.warning(f"⚠️ File {file} was not found.")
 
-
-# --- INTERAKTIV FILUPLOAD ---
-st.sidebar.markdown("### 📂 Upload egne filer")
+# --- INTERACTIVE FILE UPLOAD ---
+st.sidebar.markdown("### 📂 Upload your own files")
 uploaded_files = st.sidebar.file_uploader(
-    "Vælg .pdf eller .txt filer", type=["pdf", "txt"], accept_multiple_files=True
+    "Choose .pdf or .txt files", type=["pdf", "txt"], accept_multiple_files=True
 )
 if uploaded_files:
     all_texts = []
@@ -95,26 +93,26 @@ if uploaded_files:
     splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
     chunks = splitter.create_documents(all_texts)
     vector_store.add_documents(chunks)
-    st.sidebar.success(f"✅ Indlæst {len(chunks)} tekstbidder fra uploadede filer.")
+    st.sidebar.success(f" Loaded {len(chunks)} text chunks from uploaded files.")
 
-# --- WEBTEKST INDLÆSNING ---
+# --- LOAD TEXT FROM WEB ---
 def fetch_web_text(url):
     loader = SeleniumURLLoader(urls=[url])
     docs = loader.load()
     return [doc.page_content for doc in docs]
 
-st.sidebar.markdown("### 🌐 Indlæs fra web")
-url = st.sidebar.text_input("Indtast URL", placeholder="https://...")
-if url and st.sidebar.button("🌍 Tilføj webtekst"):
-    with st.spinner("🔗 Henter indhold..."):
+st.sidebar.markdown("### 🌐 Load from web")
+url = st.sidebar.text_input("Enter URL", placeholder="https://...")
+if url and st.sidebar.button(" Add web text"):
+    with st.spinner("🔗 Fetching content..."):
         try:
             web_texts = fetch_web_text(url)
             splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
             chunks = splitter.create_documents(web_texts)
             vector_store.add_documents(chunks)
-            st.sidebar.success(f"✅ Tekst fra {url} indlæst")
+            st.sidebar.success(f" Text from {url} loaded")
         except Exception as e:
-            st.sidebar.error(f"❌ Fejl: {e}")
+            st.sidebar.error(f" Error: {e}")
 
 # --- PLOT FUNCTIONS ---
 def show_histogram(column, title, xlabel, note):
@@ -134,13 +132,13 @@ def show_scatter(x, y, title, note):
     st.pyplot(fig)
 
 # --- CHAT INTERFACE ---
-st.header("💬 Stil et spørgsmål")
-user_input = st.text_input("Skriv dit spørgsmål:")
+st.header("💬 Ask a question")
+user_input = st.text_input("Write your question:")
 
 if user_input:
     lower_input = user_input.lower()
 
-    if "gpa fordeling" in lower_input or "gpa diagram" in lower_input:
+    if "gpa distribution" in lower_input or "gpa chart" in lower_input:
         show_histogram(
             "GPA",
             "GPA Distribution",
@@ -148,7 +146,7 @@ if user_input:
             "Most students have a GPA between **2.0 and 3.0**, with a peak in that range."
         )
 
-    elif "study time fordeling" in lower_input or "study time diagram" in lower_input:
+    elif "study time distribution" in lower_input or "study time chart" in lower_input:
         show_histogram(
             "StudyTimeWeekly",
             "Study Time Distribution",
@@ -156,7 +154,7 @@ if user_input:
             "Most students study around **10–15 hours/week**. After 20 hours, the number drops sharply."
         )
 
-    elif "sammenhæng" in lower_input or ("study time" in lower_input and "gpa" in lower_input):
+    elif "correlation" in lower_input or ("study time" in lower_input and "gpa" in lower_input):
         show_scatter(
             "StudyTimeWeekly", "GPA",
             "Study Time vs GPA",
@@ -164,16 +162,54 @@ if user_input:
         )
 
     else:
-        with st.spinner("🧠 Finder svar..."):
+        with st.spinner("Finding answer..."):
             docs = vector_store.similarity_search(user_input, k=3)
             context = "\n\n".join([doc.page_content for doc in docs])
             prompt = ChatPromptTemplate.from_template("""
-Du er en hjælpsom BI-assistent. Brug følgende kontekst til at svare:
+You are a helpful BI assistant. Use the following context to answer:
 
 {context}
 
-Spørgsmål: {question}
+Question: {question}
 """)
             response = llm.invoke(prompt.format(context=context, question=user_input))
-            st.markdown("###  Svar:")
+            st.markdown("### Answer:")
             st.write(response)
+if 'show_cheatsheet' not in st.session_state:
+    st.session_state.show_cheatsheet = False
+
+# Initialize state
+if "show_cheatsheet" not in st.session_state:
+    st.session_state.show_cheatsheet = False
+
+# Toggle function
+def toggle_cheatsheet():
+    st.session_state.show_cheatsheet = not st.session_state.show_cheatsheet
+
+# Knappen med on_click
+toggle_label = " Hide Example Questions" if st.session_state.show_cheatsheet else " Show Example Questions"
+st.button(toggle_label, on_click=toggle_cheatsheet)
+
+# Cheat Sheet visning
+if st.session_state.show_cheatsheet:
+    st.markdown("### Questions you can ask:")
+    st.markdown("""
+- What is the GPA distribution?
+- How many hours do students study per week?
+- Is there a correlation between study time and GPA?
+- Summarize the GitReadme file
+- What does the prediction model do?
+- What does the uploaded PDF say about data quality?
+    """)
+    st.markdown("---")
+# 
+st.markdown(
+    """
+    <p style='font-size: 0.75rem; color: gray;'>
+     Answers will likely be in <strong>Danish</strong>.<br> 
+     Please note that this is not ChatGPT. If something doesn't work the first time, try asking your question again.<br>
+     The chatbot can be wrong. We recommend double-checking important information.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
