@@ -1,0 +1,58 @@
+
+Predicting Student GPA Using Linear Regression
+
+Goal:
+We want to predict a student's GPA based on weekly study time using a linear regression model. We used:
+- Real dataset from OpenML
+- Simulated dataset from Kaggle
+
+Why Linear Regression?
+- Simple and easy to interpret
+- Shows the relationship between study time and GPA
+- Serves as a strong baseline before trying more complex models
+
+Steps Summary:
+
+1. Load Cleaned Data:
+- The data was pre-cleaned and stored in a folder.
+- We explored the structure before modeling.
+
+2. Align Datasets:
+- Simulated study hours (daily) converted to weekly.
+- Exam score scaled to GPA (0–4) using:
+  GPA = (exam_score / 100) * 4
+
+3. Combine Datasets:
+- Combined both datasets into one for training and testing.
+
+4. Explore the Data (EDA):
+- Summary stats revealed GPA column had mixed scales.
+- Fixed by scaling exam scores to GPA format.
+- Visualized GPA distribution, study time, and scatter plot.
+
+5. Train/Test Split:
+- 70% data used for training, 30% for testing.
+- Feature: StudyTimeWeekly
+- Target: GPA
+
+6. Train & Evaluate:
+- Model used linear regression
+- Performance:
+  - R² Score ≈ 0.242 (explains 24% of variation)
+  - RMSE ≈ 0.83 (average error)
+
+Conclusion:
+- Study time alone is not enough to predict GPA accurately
+- GPA prediction needs more features
+
+Model Improvement:
+Added:
+- Absences
+- Parental Education
+
+New Results:
+- Higher R²
+- Lower RMSE
+
+Final Takeaway:
+Better models need more context. Study time helps, but multiple features lead to more accurate GPA predictions.

@@ -60,15 +60,21 @@ def extract_text_from_txt(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         return [f.read()]
 
-# --- INDLÆS STANDARD CHATFIL ---
-default_data_path = os.path.join(os.path.dirname(__file__), "..", "Chatbot", "Chat", "chatbot_data.txt")
-if os.path.exists(default_data_path):
-    default_text = extract_text_from_txt(default_data_path)
-    splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
-    default_chunks = splitter.create_documents(default_text)
-    vector_store.add_documents(default_chunks)
-else:
-    st.sidebar.warning("⚠️ Filen chatbot_data.txt blev ikke fundet.")
+# --- INDLÆS FLERE STANDARD CHATFILER ---
+chat_dir = os.path.join(os.path.dirname(__file__), "..", "Chatbot", "Chat")
+filnavne = ["4_Prediction.txt", "GitReadme.txt"]
+
+splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
+
+for fil in filnavne:
+    sti = os.path.join(chat_dir, fil)
+    if os.path.exists(sti):
+        tekst = extract_text_from_txt(sti)
+        chunks = splitter.create_documents(tekst)
+        vector_store.add_documents(chunks)
+    else:
+        st.sidebar.warning(f"⚠️ Filen {fil} blev ikke fundet.")
+
 
 # --- INTERAKTIV FILUPLOAD ---
 st.sidebar.markdown("### 📂 Upload egne filer")
