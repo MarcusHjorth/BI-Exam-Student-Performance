@@ -34,7 +34,7 @@ with st.expander("View Answer"):
     st.markdown("""
     **Short Answer:**
                 
-    Not surprisingly, the most important factor for the best exam score is **study time**. That said, other habits can also play a role.
+    Not surprisingly, the most important factor, for the best exam score is **study time**. That said, other habits can also play a role.
     factors like **mental health**, **sleep**, **exercise** and **attendance** do all show a positive correlation in some degree,
     while habits **social media** and **Netflix usage** do in fact show a slight negative correlation with exam scores. 
 
