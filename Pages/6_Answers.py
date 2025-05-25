@@ -29,14 +29,16 @@ with st.expander("View Answer"):
     """)
 
 # Q2
-st.markdown("<div class='question-title'>2. To what extent do attendance, sleep patterns, exercise,  mental health (am more) impact students grades? *(Kaggle dataset only)*</div>", unsafe_allow_html=True)
+st.markdown("<div class='question-title'>2. To what extent does different habits impact a students grades *(Kaggle dataset only)*</div>", unsafe_allow_html=True)
 with st.expander("View Answer"):
     st.markdown("""
-    _Your answer goes here..._
+    **Short Answer:**
+                
+    Not surprisingly, the most important factor for the best exam score is **study time**. That said, other habits can also play a role.
+    factors like **mental health**, **sleep**, **exercise** and **attendance** do all show a positive correlation in some degree,
+    while habits **social media** and **Netflix usage** do in fact show a slight negative correlation with exam scores. 
 
-    - **Sleep Patterns:** ...
-    - **Social Media Use:** ...
-    - **Key Insights:** ...
+    In genereal, consistent studying combined with healthy daily routines tends to lead to better academic performance.
     """)
 
 # Q3
@@ -88,7 +90,7 @@ with st.expander("View Answer"):
 # Footer
 st.markdown(
     """
-    <div style='background-color: #f0f2f6; padding: 10px; border-left: 5px solid #1f77b4; border-radius: 4px; margin-top: 30px;'>
+    <div style='background-color: #f0f2f6; padding: 10px; border-left: 5px solid #1f77b4; border-radius: 4px; margin-top: 30px; color: #333;'>
         This page is part of our final BI exam project.  
         See the full repository for code, data, and model documentation 👉  
         <a href='https://github.com/MarcusHjorth/BI-Exam-Student-Performance/tree/main/Code' target='_blank'>
