@@ -49,7 +49,6 @@ st.markdown("---")
 st.markdown("""
     <style>
         html, body, [class*="css"] {
-            font-family: 'Segoe UI', sans-serif;
             background-color: #f8f9fc;
             color: #333;
         }
@@ -58,6 +57,7 @@ st.markdown("""
         }
         .chart-description {
             background-color: #eef1f6;
+            color: #333;
             border-left: 5px solid #4c8bf5;
             padding: 0.75rem 1rem;
             margin-bottom: 0.5rem;
@@ -66,6 +66,7 @@ st.markdown("""
         }
         .chart-description-yellow {
             background-color: #FFFDE7;    
+            color: #333;
             border-left: 5px solid #FFEB3B; 
             padding: 0.75rem 1rem;
             margin-bottom: 0.5rem;
