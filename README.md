@@ -80,11 +80,10 @@ These articles help show that our ideas make sense and give us a good starting p
 ---
 
 
-
 ###  Research Questions for project 
 1. How do study time, absences, and parental education relate to academic performance across both datasets?
 
-2. To what extent do sleep patterns and social media use impact students' grades? (Kaggle dataset only)
+2. To what extent do attendance, sleep patterns, exercise,  mental health (am more) impact students grades? (Kaggle dataset only)
 
 3. Can we predict a student’s likely grade using a machine learning model based only on weekly study time? ?
 
@@ -92,7 +91,24 @@ These articles help show that our ideas make sense and give us a good starting p
 
 5. Can a simple chatbot help users navigate our findings and better understand which habits influence academic success?
 
----
+--- 
+### Answers to Research Questions
+You can explore the answers to our research questions by either:
+
+1. Visiting our Streamlit app, where the insights are presented.
+
+2. Browsing the Pages folder in the repository to find a static version of the answers.
+
+**How to Run the Streamlit App** 
+
+1. Fork this repository to your local machine
+2. Open a terminal and navigate to the project’s root directory
+3. Run the following command:
+
+```
+python -m streamlit run app.py
+```
+This will launch the interactive app in your default browser.
 
 
 ### Team Engagement
