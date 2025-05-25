@@ -83,7 +83,9 @@ st.header("2. Visual Exploration of Student Habits")
 st.markdown("""
 Below are plots showing how individual habits correlate with exam performance.
 
-Since it's not very surprising that study time is the strongest predictor, we will mostly look into other factors like `mental_health_rating`, `exercise_frequency`, `attendance_percentage`, `sleep_hours`, and screen time(`social_media_hours`, `netflix_hours`).
+Not to any surprising `study_hours_per_day` is the strongest predictor. But other factors like 
+`mental_health_rating`, `exercise_frequency`, `attendance_percentage`, `sleep_hours`, and screen time(`social_media_hours`, `netflix_hours`),
+did also have a noticeable impact on exam scores.
             
 - **Higher `mental_health_ratings`** and **`exercise_frequency`** show a modest boost in scores.
 - **More sleep** tends to associate with better results.
@@ -180,7 +182,7 @@ st.markdown("---")
 # --- Decision Tree ---
 st.header("4. Decision Tree Prediction Model")
 st.markdown("""
-We use a Decision Tree Classifier to categorize students into performance levels like 'low' or 'very high' based on their daily habits.
+We use a Decision Tree Classifier to categorize students into performance levels like 'very low', 'low', 'medium', 'high' or 'very high' based on their daily habits.
 
 This helps us visualize **which habits the model considers most important** when predicting academic outcomes.
 """)
