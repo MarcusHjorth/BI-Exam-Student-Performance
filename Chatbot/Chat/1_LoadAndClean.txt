@@ -1,0 +1,32 @@
+# Summary – Dataset Loading & Cleaning
+
+## 1. Real Dataset
+- Data er hentet fra en OpenML ARFF-fil.
+- Metadata og ARFF-kommentarer fjernes.
+- Kolonnenavne tilføjes manuelt fra dokumentation.
+- Fjernelse af dubletter og manglende værdier.
+- Numeriske kolonner konverteres til korrekt datatype.
+- Studietimer over 100 timer/uge fjernes som outliers.
+- Ja/nej-kategorier konverteres til binær (0/1).
+- Den rengjorte version gemmes som CSV i `Data/CleanedData/`.
+
+## 2. Simuleret Dataset
+- CSV-data fra Kaggle.
+- Dubletter og rækker med manglende værdier fjernes.
+- Unødvendige kolonner som “StudentID” droppes.
+- Tekstkolonner standardiseres til små bogstaver uden whitespace.
+- Numeriske og binære felter konverteres korrekt.
+- Outliers (mere end 100 timer/uge) fjernes.
+- Rengjort dataset gemmes i samme mappe som ovenfor.
+
+## 3. Interaktiv Filtrering
+- Brugeren kan filtrere det rensede real dataset:
+  - GPA-interval (0.0 til 4.0)
+  - Køn (alle, kvinde = 0, mand = 1)
+  - Forældres uddannelsesniveau (multiselect)
+- Antal viste rækker opdateres baseret på filtrene.
+
+## Output
+- Begge datasæt er nu klar til videre analyse og visualisering.
+- De er renset for støj, udeblivende værdier og inkonsekvenser.
+

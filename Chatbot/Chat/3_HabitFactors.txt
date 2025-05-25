@@ -1,0 +1,58 @@
+# Summary – Student Habits Exam Score Analysis
+
+## Formål
+Dashboardet undersøger, hvordan forskellige vaner og livsstilsfaktorer påvirker elevers eksamensresultater. Både visualiseringer og en beslutningstræ-model benyttes.
+
+---
+
+## 1. Korrelation
+- En heatmap bruges til at afsløre hvilke vaner der korrelerer med eksamensresultater.
+- Data er one-hot encoded før beregning af korrelation.
+
+---
+
+## 2. Visual Exploration
+- Boxplots og regressionsplots viser forhold mellem score og:
+  - Mental health rating
+  - Exercise frequency
+  - Sleep hours
+  - Social media + Netflix hours
+  - Attendance percentage
+- Tendens:
+  - Mere søvn og motion → lidt højere scores
+  - Mere skærmtid → lidt lavere scores
+
+---
+
+## 3. Korrelationsoversigt (tabel)
+- Tabellarisk rangering af de numeriske korrelationer med `exam_score`.
+- `study_hours_per_day` og `attendance_percentage` er stærkest positivt korreleret.
+
+---
+
+## 4. Decision Tree Model
+- Eksamensresultater omdannes til kategorier: `very_low`, `low`, `medium`, `high`, `very_high`.
+- Beslutningstræ bruges til at forudsige kategori ud fra følgende variable:
+  - Studietid, skærmtid, søvn, motion, mental sundhed, fremmøde
+- Træet visualiseres med `plot_tree()`.
+
+---
+
+## 5. Model Performance
+- Kvaliteten af forudsigelser måles med:
+  - Precision, Recall, F1-score for hver klasse
+  - Performance er bedst for yderkategorier (very_low / very_high)
+  - Overordnet accuracy: ca. 59%
+
+---
+
+## 6. Konklusioner
+- Høj studietid → stærkest indikator for høj score
+- Søvn og motion → moderat positiv effekt
+- Skærmtid → svagt negativ effekt
+- Mental health → mindre men mærkbar effekt
+- Kombinerede vaner giver bedre forståelse af præstation
+
+---
+
+Fil anvender `simulated_data_cleaned.csv` og kategoriserer score vha. `exam_level`.
