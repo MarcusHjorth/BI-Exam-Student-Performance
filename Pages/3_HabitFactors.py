@@ -37,23 +37,23 @@ Here’s what you’ll find in this interactive dashboard:
    - One-hot encoded heatmap to reveal relationships between all features.
    - Interpretation of strongest and weakest correlations with `exam_score`.
 
-2. **Visual Exploration**
-   - **Boxplots**: Mental health and exercise vs. exam scores.
-   - **Regplots**: Sleep, Netflix, and study hours vs. exam performance.
+2. **Visual Exploration of Student Habits**
+   - Compare how individual habits like exercise, sleep, and screen time impact exam scores using dynamic boxplots and regression plots.
 
-3. **Score Categorization**
-   - Converts numerical exam scores into categories like `very_low`, `medium`, and `very_high`.
-
-4. **Feature Importance**
+3. **Numeric Correlation with Exam Score**
    - Ranks input variables using ANOVA F-test to determine which factors are most predictive.
-
-5. **Decision Tree Classifier**
+            
+4. **Decision Tree Prediction Model**
    - Predicts exam score categories based on selected features to further see the correlations between some of the stronger features from the heatmap.
    - Full visual representation of the tree logic.
 
-6. **Model Performance**
-   - Precision, recall, and F1-scores for each class.
-   - Overall accuracy and explanation of model strengths/weaknesses.
+            
+5. **Model Evaluation**
+    - Performance metrics including precision, recall, and F1-scores for each class.
+    - Overall accuracy and insights into model strengths and weaknesses.
+
+6. **Summary & Takeaways**
+   - Key findings on how study habits, mental health, and lifestyle choices relate to academic performance.
 
 ---
 
@@ -182,7 +182,7 @@ st.markdown("---")
 # --- Decision Tree ---
 st.header("4. Decision Tree Prediction Model")
 st.markdown("""
-We use a Decision Tree Classifier to categorize students into performance levels like 'very low', 'low', 'medium', 'high' or 'very high' based on their daily habits.
+We use a Decision Tree Classifier to categorize students into performance levels of `very low(0-40%)`, `low(41-55%)`, `medium(56-70%)`, `high(71-85%)` or `very high(85-100%)` based on their daily habits.
 
 This helps us visualize **which habits the model considers most important** when predicting academic outcomes.
 """)
