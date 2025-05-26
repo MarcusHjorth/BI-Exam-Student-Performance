@@ -20,12 +20,18 @@ st.markdown("Here we present answers to the research questions explored in this 
 st.markdown("<div class='question-title'>1. How do study time, absences, and parental education relate to academic performance across both datasets?</div>", unsafe_allow_html=True)
 with st.expander("View Answer"):
     st.markdown("""
-    _Your answer goes here..._
+    **Short Answer:**  
+All three factors influence academic performance — but the strength and realism of the patterns vary depending on the dataset.
 
-    - **Study Time:** ...
-    - **Absences:** ...
-    - **Parental Education:** ...
-    - **Summary Comparison:** ...
+**Key Findings:**
+- **Study time** shows a positive trend in both datasets, but much stronger in the simulated data (r = 0.82 vs. r = 0.18).
+- **Absences** have a major negative impact in the real data (r = -0.92), but almost no effect in the simulated dataset.
+- **Parental education** shows a mild upward trend, but the correlation is weak in both datasets.
+
+**Conclusion:**  
+Study time helps, absences hurt, and parental education plays a role — but only the real dataset reflects how complex and noisy academic performance really is.
+
+---
     """)
 
 # Q2
@@ -63,11 +69,16 @@ with st.expander("View Answer"):
 st.markdown("<div class='question-title'>4. Do the key academic patterns found in the simulated dataset align with those in the real-world dataset?</div>", unsafe_allow_html=True)
 with st.expander("View Answer"):
     st.markdown("""
-    _Your answer goes here..._
+    **Short Answer:**  
+Partially — some trends are realistic, but others are clearly exaggerated or missing.
 
-    - **Common Patterns:** ...
-    - **Differences Observed:** ...
-    - **Interpretation:** ...
+**Key Differences:**
+- Simulated data makes study time look like a superpower — it’s nearly a straight line to high grades.
+- In the real world, even students who study a lot don’t always get top grades.
+- The real dataset shows strong effects of absence and more variation in general.
+
+**Conclusion:**  
+The simulated dataset is useful for training and testing models, but not for drawing conclusions about real students. Real-world data is messier — and more honest.
     """)
 
 # Q5
