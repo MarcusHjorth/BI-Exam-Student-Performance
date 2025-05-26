@@ -83,7 +83,7 @@ These articles help show that our ideas make sense and give us a good starting p
 ###  Research Questions for project 
 1. How do study time, absences, and parental education relate to academic performance across both datasets?
 
-2. To what extent do attendance, sleep patterns, exercise,  mental health (am more) impact students grades? (Kaggle dataset only)
+2. To what extent does different habits impact a students grades *(Kaggle dataset only)
 
 3. Can we predict a student’s likely grade using a machine learning model based only on weekly study time? ?
 
