@@ -22,7 +22,9 @@ def load_data():
 student = load_data()
 
 # Title
+st.set_page_config(page_title="Student Performance Comparison", layout="centered")
 st.title("Student Habits Exam Score Analysis")
+
 st.markdown("This app explores factors affecting exam scores using data visualization and a decision tree model.")
 
 # --- INTRO TEXT ---
