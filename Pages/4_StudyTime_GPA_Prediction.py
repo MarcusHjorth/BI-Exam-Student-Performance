@@ -227,7 +227,7 @@ st.markdown("---")
 
 st.markdown("#### Extended Model")
 col3, col4 = st.columns(2)
-col3.metric("R² Score", f"{r2_ext:.2f}")
+col3.metric("R² Score", f"{r2_ext:.3f}")
 col4.metric("RMSE", f"{rmse_ext:.3f}")
 st.markdown("---")
 
